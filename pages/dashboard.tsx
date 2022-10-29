@@ -105,7 +105,7 @@ const Dashboard = () => {
                 padding={0}
                 margin={0}
               >
-                <Text h2 margin={0} style={{ lineHeight: "1em" }}>
+                <Text h2 margin={0}>
                   &rdquo;{pickResult?.pickedPerson || "lädt ..."}&rdquo;
                 </Text>
               </Display>
