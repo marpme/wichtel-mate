@@ -10,38 +10,38 @@ describe("people picker", () => {
       {
         person: "Marvin",
         personId: "o1WB7Qwah6",
-        pickedPerson: "Carsten",
-        pickedPersonId: "FGwMIncf8D",
-      },
-      {
-        person: "Mariska",
-        personId: "Ci9PdtQGn9",
-        pickedPerson: "Marvin",
-        pickedPersonId: "o1WB7Qwah6",
-      },
-      {
-        person: "Jana",
-        personId: "Tj859tcBP9",
         pickedPerson: "Debby",
         pickedPersonId: "FeLoNlVJw3",
       },
       {
-        person: "Carsten",
-        personId: "FGwMIncf8D",
-        pickedPerson: "Sandro",
-        pickedPersonId: "VWwByBEw1z",
-      },
-      {
-        person: "Sandro",
-        personId: "VWwByBEw1z",
+        person: "Mariska",
+        personId: "Ci9PdtQGn9",
         pickedPerson: "Jana",
         pickedPersonId: "Tj859tcBP9",
       },
       {
-        person: "Debby",
-        personId: "FeLoNlVJw3",
+        person: "Jana",
+        personId: "Tj859tcBP9",
+        pickedPerson: "Marvin",
+        pickedPersonId: "o1WB7Qwah6",
+      },
+      {
+        person: "Carsten",
+        personId: "FGwMIncf8D",
         pickedPerson: "Mariska",
         pickedPersonId: "Ci9PdtQGn9",
+      },
+      {
+        person: "Sandro",
+        personId: "VWwByBEw1z",
+        pickedPerson: "Carsten",
+        pickedPersonId: "FGwMIncf8D",
+      },
+      {
+        person: "Debby",
+        personId: "FeLoNlVJw3",
+        pickedPerson: "Sandro",
+        pickedPersonId: "VWwByBEw1z",
       },
     ]);
   });
