@@ -1,8 +1,6 @@
 import Rand from "rand-seed";
 import { userIdToPeopleMap } from "./login";
 
-const currentYear = new Date().getFullYear();
-
 export type PickResult = {
   personId: string;
   person: string;
@@ -11,6 +9,7 @@ export type PickResult = {
 };
 
 export const peoplePicker = (): PickResult[] => {
+  const currentYear = new Date().getFullYear();
   const rand = new Rand(currentYear.toString(10));
 
   let distributed = false;
