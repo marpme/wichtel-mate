@@ -1,48 +1,55 @@
 import { vi, describe, expect, it } from "vitest";
 import { peoplePicker } from "./peoplePicker";
+import { createHash } from "crypto";
 
+const futureYears = new Array<number>(100)
+  .fill(2022)
+  .map<Array<number>>((year, index) => [year + index]);
+
+console.log(futureYears);
 describe("people picker", () => {
   it("2022", () => {
-    const date = new Date(2022, 1, 1);
-    vi.setSystemTime(date);
+    vi.setSystemTime(new Date(2022, 1, 1));
 
     expect(peoplePicker()).toStrictEqual([
-      {
+      expect.objectContaining({
         person: "Marvin",
-        personId: "o1WB7Qwah6",
         pickedPerson: "Debby",
-        pickedPersonId: "FeLoNlVJw3",
-      },
-      {
+      }),
+      expect.objectContaining({
         person: "Mariska",
-        personId: "Ci9PdtQGn9",
         pickedPerson: "Jana",
-        pickedPersonId: "Tj859tcBP9",
-      },
-      {
+      }),
+      expect.objectContaining({
         person: "Jana",
-        personId: "Tj859tcBP9",
         pickedPerson: "Marvin",
-        pickedPersonId: "o1WB7Qwah6",
-      },
-      {
+      }),
+      expect.objectContaining({
         person: "Carsten",
-        personId: "FGwMIncf8D",
         pickedPerson: "Mariska",
-        pickedPersonId: "Ci9PdtQGn9",
-      },
-      {
+      }),
+      expect.objectContaining({
         person: "Sandro",
-        personId: "VWwByBEw1z",
         pickedPerson: "Carsten",
-        pickedPersonId: "FGwMIncf8D",
-      },
-      {
+      }),
+      expect.objectContaining({
         person: "Debby",
-        personId: "FeLoNlVJw3",
         pickedPerson: "Sandro",
-        pickedPersonId: "VWwByBEw1z",
-      },
+      }),
     ]);
+  });
+
+  it.each(futureYears)("people picked for %i year following", (year) => {
+    vi.setSystemTime(new Date(year, 1, 1));
+
+    const selectedPeople = peoplePicker();
+    expect(selectedPeople).toHaveLength(6);
+
+    const hashedPeopleSelected = createHash("sha256")
+      .update(JSON.stringify(selectedPeople))
+      .digest()
+      .toString("base64");
+
+    expect(hashedPeopleSelected).toMatchSnapshot();
   });
 });
