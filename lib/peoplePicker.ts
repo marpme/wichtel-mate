@@ -1,5 +1,4 @@
 import Rand from "rand-seed";
-import { userIdToPeopleMap } from "./login";
 
 export type PickResult = {
   personId: string;
@@ -8,7 +7,7 @@ export type PickResult = {
   pickedPersonId: string;
 };
 
-export const peoplePicker = (): PickResult[] => {
+export const peoplePicker = (users: Map<string, string>): PickResult[] => {
   const currentYear = new Date().getFullYear();
   const rand = new Rand(currentYear.toString(10));
 
@@ -22,11 +21,10 @@ export const peoplePicker = (): PickResult[] => {
     index++;
     result = [];
 
-    for (let [personId, person] of userIdToPeopleMap.entries()) {
-      const pickIndex =
-        Math.round(rand.next() * 100000 + index) % userIdToPeopleMap.size;
-      const pickedPerson = Array.from(userIdToPeopleMap.values())[pickIndex];
-      const pickedPersonId = Array.from(userIdToPeopleMap.keys())[pickIndex];
+    for (let [personId, person] of users.entries()) {
+      const pickIndex = Math.round(rand.next() * 100000 + index) % users.size;
+      const pickedPerson = Array.from(users.values())[pickIndex];
+      const pickedPersonId = Array.from(users.keys())[pickIndex];
 
       if (personId === pickedPersonId) {
         hasSelf ||= true;
