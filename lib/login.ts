@@ -1,19 +1,6 @@
 import { GetServerSidePropsContext } from "next";
-
-export const userMap = new Map<string, string>(
-  Object.entries({
-    o1WB7Qwah6: "Marvin",
-    Ci9PdtQGn9: "Mariska",
-    Tj859tcBP9: "Jana",
-    FGwMIncf8D: "Carsten",
-    VWwByBEw1z: "Sandro",
-    FeLoNlVJw3: "Debby",
-
-    NVK5icGkMw: "Arne",
-    kc9hNyzuZN: "Mimi",
-    iN0ywpsiXH: "Sissi",
-  })
-);
+import { userMap } from "./groups";
+import type { IncomingMessage } from "http";
 
 export const hasValidAuth = (context: GetServerSidePropsContext): boolean => {
   const sessionToken = context.req.cookies["sessionToken"];
@@ -22,4 +9,26 @@ export const hasValidAuth = (context: GetServerSidePropsContext): boolean => {
   }
 
   return userMap.has(sessionToken);
+};
+
+export const hasValidReqAuth = (
+  req: IncomingMessage & { cookies: Partial<{ [p: string]: string }> }
+): boolean => {
+  const sessionToken = req.cookies["sessionToken"];
+  if (!sessionToken) {
+    return false;
+  }
+
+  return userMap.has(sessionToken);
+};
+
+export const getUserId = (
+  req: IncomingMessage & { cookies: Partial<{ [p: string]: string }> }
+): string => {
+  const sessionToken = req.cookies["sessionToken"];
+  if (!hasValidReqAuth(req) || !sessionToken) {
+    throw new Error("Invalid user");
+  }
+
+  return sessionToken;
 };

@@ -1,24 +1,11 @@
 import Head from "next/head";
-import Image from "next/image";
-import {
-  Button,
-  Card,
-  Divider,
-  Fieldset,
-  Grid,
-  Input,
-  Page,
-  Spacer,
-  Text,
-  useToasts,
-} from "@geist-ui/core";
-import { useEffect, useRef, useState } from "react";
-
-import moment from "moment";
+import { Card, Divider, Grid, Page, Text } from "@geist-ui/core";
 import "moment/locale/de";
-import { useRouter } from "next/router";
 import { GetServerSideProps } from "next";
 import { hasValidAuth } from "../lib/login";
+import { useXMASDiff } from "../hooks/useXMASDiff";
+import { LoginForm } from "../components/LoginForm";
+import { WichtelImage } from "../components/WichtelImage";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   if (hasValidAuth(context)) {
@@ -36,20 +23,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   };
 };
 
-const currentDate = new Date();
-
 export default function Home() {
-  const router = useRouter();
-  const [timeUntil, setTimeUntil] = useState<string | undefined>();
-  const { setToast } = useToasts();
-  const ref = useRef<HTMLInputElement>();
-
-  useEffect(() => {
-    moment.locale("de");
-    setTimeUntil(
-      moment(new Date(currentDate.getFullYear(), 11, 24)).fromNow(true)
-    );
-  }, []);
+  const { timeUntil } = useXMASDiff();
 
   return (
     <Page dotBackdrop margin={0} padding={0} width={"100vw"}>
@@ -66,13 +41,7 @@ export default function Home() {
         <Grid xs={22} alignItems={"center"} justify={"center"}>
           <Card padding={0} width={"375px"}>
             <div style={{ padding: "10px" }}>
-              <Image
-                src={"/wichtel.svg"}
-                alt={"Wichtel"}
-                width={400}
-                height={200}
-                draggable={false}
-              />
+              <WichtelImage />
             </div>
             <Card.Content>
               <Text h3>
@@ -91,49 +60,7 @@ export default function Home() {
               </Text>
             </Card.Content>
             <Divider w={"100%"} margin={0} padding={0} />
-            <form
-              onSubmit={async (e) => {
-                e.stopPropagation();
-                e.preventDefault();
-
-                const response = await fetch("/api/login", {
-                  method: "POST",
-                  headers: {
-                    "Content-Type": "application/json",
-                  },
-                  body: JSON.stringify({
-                    login: ref.current?.value,
-                  }),
-                });
-
-                if (response.status !== 204) {
-                  setToast({
-                    text: "Hey du! Du bist noch kein helfender Wichtel, schau später nochmal vorbei!",
-                    type: "error",
-                  });
-                } else {
-                  router.push("/dashboard");
-                }
-              }}
-            >
-              <Card.Content>
-                <Text h5>Login:</Text>
-                <Input
-                  ref={ref as any}
-                  htmlType="text"
-                  id="wichtelid"
-                  name="wichtelid"
-                  label={"Wichtel ID"}
-                  placeholder={"DZ50UpXwIp"}
-                />
-              </Card.Content>
-              <Fieldset.Footer>
-                <Spacer inline />
-                <Button scale={2 / 3} auto htmlType="submit" type={"success"}>
-                  Submit
-                </Button>
-              </Fieldset.Footer>
-            </form>
+            <LoginForm />
           </Card>
         </Grid>
       </Grid.Container>
