@@ -1,11 +1,11 @@
 import { NextApiHandler } from "next";
 import { setCookie } from "../../lib/cookie";
-import { allowedLogin } from "../../lib/login";
+import { userIdToPeopleMap } from "../../lib/login";
 
 const LoginHandler: NextApiHandler = async (req, res) => {
   const loginId = req.body.login;
 
-  if (typeof allowedLogin[loginId] === "string") {
+  if (userIdToPeopleMap.has(loginId)) {
     return setCookie(res, "sessionToken", loginId).status(204).end();
   }
 
