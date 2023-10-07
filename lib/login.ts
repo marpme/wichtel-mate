@@ -1,5 +1,4 @@
-import { GetServerSidePropsContext, PreviewData } from "next";
-import { ParsedUrlQuery } from "querystring";
+import { GetServerSidePropsContext } from "next";
 
 export const userMap = new Map<string, string>(
   Object.entries({
