@@ -1,7 +1,7 @@
 import { GetServerSidePropsContext, PreviewData } from "next";
 import { ParsedUrlQuery } from "querystring";
 
-export const userIdToPeopleMap = new Map<string, string>(
+export const userMap = new Map<string, string>(
   Object.entries({
     o1WB7Qwah6: "Marvin",
     Ci9PdtQGn9: "Mariska",
@@ -24,5 +24,5 @@ export const hasValidAuth = (
     return false;
   }
 
-  return userIdToPeopleMap.has(sessionToken);
+  return userMap.has(sessionToken);
 };
