@@ -47,7 +47,7 @@ export default function Home() {
   useEffect(() => {
     moment.locale("de");
     setTimeUntil(
-      moment(new Date(currentDate.getFullYear(), 12, 25)).fromNow(true)
+      moment(new Date(currentDate.getFullYear(), 11, 24)).fromNow(true)
     );
   }, []);
 
