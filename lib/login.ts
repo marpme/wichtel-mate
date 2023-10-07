@@ -16,9 +16,7 @@ export const userMap = new Map<string, string>(
   })
 );
 
-export const hasValidAuth = (
-  context: GetServerSidePropsContext<ParsedUrlQuery, PreviewData>
-): boolean => {
+export const hasValidAuth = (context: GetServerSidePropsContext): boolean => {
   const sessionToken = context.req.cookies["sessionToken"];
   if (!sessionToken) {
     return false;
