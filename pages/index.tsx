@@ -37,9 +37,9 @@ export default function Home() {
         />
       </Head>
 
-      <Grid.Container alignItems={"center"} justify={"center"} height={"100vh"}>
+      <Grid.Container alignItems={"center"} justify={"center"}>
         <Grid xs={22} alignItems={"center"} justify={"center"}>
-          <Card padding={0} width={"375px"}>
+          <Card width={"375px"}>
             <div style={{ padding: "10px" }}>
               <WichtelImage />
             </div>

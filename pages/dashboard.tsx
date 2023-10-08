@@ -37,17 +37,11 @@ const Dashboard = () => {
   const { data, isSuccess } = useGroups();
 
   return (
-    <Page width={"100vw"} height={"100vh"} margin={0} padding={0}>
+    <Page dotBackdrop width={"100vw"}>
       <Header />
-      <Grid.Container
-        alignItems={"center"}
-        justify={"center"}
-        height={"100%"}
-        padding={0}
-        margin={0}
-      >
-        <Grid xs={24} alignItems={"center"} justify={"center"} width={"375px"}>
-          <Card>
+      <Grid.Container alignItems={"center"} justify={"center"}>
+        <Grid xs={24} alignItems={"center"} justify={"center"}>
+          <Card width={"375px"}>
             <div
               style={{
                 padding: "10px",
