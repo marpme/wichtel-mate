@@ -46,6 +46,7 @@ export const LoginForm = () => {
         <Text h5>Login:</Text>
         <Input
           ref={ref}
+          data-testid={"login-input-field"}
           crossOrigin={undefined}
           htmlType="text"
           id="wichtelid"
@@ -56,7 +57,13 @@ export const LoginForm = () => {
       </Card.Content>
       <Fieldset.Footer>
         <Spacer inline />
-        <Button scale={2 / 3} auto htmlType="submit" type={"success"}>
+        <Button
+          scale={2 / 3}
+          auto
+          htmlType="submit"
+          data-testid={"login-submit-button"}
+          type={"success"}
+        >
           Submit
         </Button>
       </Fieldset.Footer>

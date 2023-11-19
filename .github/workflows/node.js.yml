@@ -24,3 +24,19 @@ jobs:
     - run: pnpm install
     - run: pnpm test
     - run: pnpm build
+  e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          cache: 'pnpm'
+      - run: pnpm install
+      - uses: cypress-io/github-action@v6
+        with:
+          start: pnpm dev
