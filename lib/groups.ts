@@ -15,7 +15,7 @@ export const groups: Array<Group> = [
         NVK5icGkMw: "Arne",
         kc9hNyzuZN: "Mimi",
         iN0ywpsiXH: "Sissi",
-      })
+      }),
     ),
   },
   {
@@ -29,13 +29,16 @@ export const groups: Array<Group> = [
         FGwMIncf8D: "Carsten",
         VWwByBEw1z: "Sandro",
         FeLoNlVJw3: "Debby",
-      })
+      }),
     ),
   },
 ];
 
 export const userMap = new Map<string, string>(
-  ...groups.map((group) => group.userMap)
+  groups.reduce<Iterable<readonly [string, string]>>(
+    (all, group) => [...all, ...group.userMap],
+    [],
+  ),
 );
 
 export const getBelongingGroup = (userId: string): Array<Group> => {
