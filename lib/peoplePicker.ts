@@ -21,7 +21,7 @@ export const peoplePicker = (users: Map<string, string>): PickResult[] => {
     index++;
     result = [];
 
-    for (let [personId, person] of users.entries()) {
+    for (const [personId, person] of users.entries()) {
       const pickIndex = Math.round(rand.next() * 100000 + index) % users.size;
       const pickedPerson = Array.from(users.values())[pickIndex];
       const pickedPersonId = Array.from(users.keys())[pickIndex];

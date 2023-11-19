@@ -14,7 +14,7 @@ export const LoginForm = () => {
   const router = useRouter();
 
   const { setToast } = useToasts();
-  const ref = useRef<HTMLInputElement>();
+  const ref = useRef<HTMLInputElement>(null);
 
   return (
     <form
@@ -45,7 +45,8 @@ export const LoginForm = () => {
       <Card.Content>
         <Text h5>Login:</Text>
         <Input
-          ref={ref as any}
+          ref={ref}
+          crossOrigin={undefined}
           htmlType="text"
           id="wichtelid"
           name="wichtelid"
