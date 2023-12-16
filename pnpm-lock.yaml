@@ -21,8 +21,8 @@ dependencies:
     specifier: ^0.5.0
     version: 0.5.0
   inter-ui:
-    specifier: ^3.19.3
-    version: 3.19.3
+    specifier: ^4.0.0
+    version: 4.0.0
   moment:
     specifier: ^2.29.4
     version: 2.29.4
@@ -2450,8 +2450,9 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /inter-ui@3.19.3:
-    resolution: {integrity: sha512-5FG9fjuYOXocIfjzcCBhICL5cpvwEetseL3FU6tP3d6Bn7g8wODhB+I9RNGRTizCT7CUG4GOK54OPxqq3msQgg==}
+  /inter-ui@4.0.0:
+    resolution: {integrity: sha512-/2XKDS/6DJYZzBHRsFVrZ2l0NYhaRZXki3jUnpJu4DAZtsZdDUtOHfG5msc6ifwKg59eJiyqeIYBDNgvxz+7XQ==}
+    engines: {node: '>=20.0.0'}
     dev: false
 
   /internal-slot@1.0.6:
