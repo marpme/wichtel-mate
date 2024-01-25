@@ -39,8 +39,8 @@ dependencies:
     specifier: ^18.2.0
     version: 18.2.0(react@18.2.0)
   react-snowfall:
-    specifier: ^1.2.1
-    version: 1.2.1(react-dom@18.2.0)(react@18.2.0)
+    specifier: ^2.0.0
+    version: 2.0.0(react-dom@18.2.0)(react@18.2.0)
 
 devDependencies:
   '@tanstack/eslint-plugin-query':
@@ -3283,8 +3283,8 @@ packages:
     resolution: {integrity: sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==}
     dev: true
 
-  /react-snowfall@1.2.1(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-d2UR3nDq3F0DJGaTfJ0QNbBo76UZHtT9wHFj+ePxAl4FgSxWBhxB/Bjn06f5iDBwhgwiZ7CZmv3lwfNvjo6a+w==}
+  /react-snowfall@2.0.0(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-Flsp3aREy/wnxUiXezhIerrbWVju59U8VYE8GtPN6rb4hSNudoc/PpMDQtPLN64SUXL57Wg4WNCf1mjhN40rMQ==}
     peerDependencies:
       react: "^16.8 ||\_17.x || 18.x"
       react-dom: ^16.8 || 17.x || 18.x
