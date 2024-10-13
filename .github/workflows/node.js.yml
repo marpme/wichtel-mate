@@ -39,4 +39,5 @@ jobs:
       - run: pnpm install
       - uses: cypress-io/github-action@v6
         with:
-          start: pnpm start
+          build: pnpm run build
+          start: pnpm serve
