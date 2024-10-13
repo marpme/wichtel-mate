@@ -21,8 +21,8 @@ importers:
         specifier: ^5.8.4
         version: 5.8.4(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       inter-ui:
-        specifier: ^3.19.3
-        version: 3.19.3
+        specifier: ^4.0.0
+        version: 4.0.2
       moment:
         specifier: ^2.29.4
         version: 2.29.4
@@ -1370,8 +1370,9 @@ packages:
     resolution: {integrity: sha512-7PnF4oN3CvZF23ADhA5wRaYEQpJ8qygSkbtTXWBeXWXmEVRXK+1ITciHWwHhsjv1TmW0MgacIv6hEi5pX5NQdA==}
     engines: {node: '>=10'}
 
-  inter-ui@3.19.3:
-    resolution: {integrity: sha512-5FG9fjuYOXocIfjzcCBhICL5cpvwEetseL3FU6tP3d6Bn7g8wODhB+I9RNGRTizCT7CUG4GOK54OPxqq3msQgg==}
+  inter-ui@4.0.2:
+    resolution: {integrity: sha512-YmfzwEtzuVzEenQwSB/tmmqi/A0a2GnFk4mG4ZFULXiO5DNk0fJWiO3o9i1sdVKuMVGx9iiNQnCq8ghWZJVVHw==}
+    engines: {node: '>=16.0.0'}
 
   internal-slot@1.0.6:
     resolution: {integrity: sha512-Xj6dv+PsbtwyPpEflsejS+oIZxmMlV44zAhG479uYu89MsjcYOhCFnNyKrkJrihbsiasQyY0afoCl/9BLR65bg==}
@@ -3802,7 +3803,7 @@ snapshots:
 
   ini@2.0.0: {}
 
-  inter-ui@3.19.3: {}
+  inter-ui@4.0.2: {}
 
   internal-slot@1.0.6:
     dependencies:
