@@ -39,4 +39,4 @@ jobs:
       - run: pnpm install
       - uses: cypress-io/github-action@v6
         with:
-          start: pnpm dev
+          start: pnpm start
