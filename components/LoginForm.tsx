@@ -44,6 +44,8 @@ export const LoginForm = () => {
           name="wichtelid"
           label={"Wichtel ID"}
           placeholder={"DZ50UpXwIp"}
+          onPointerEnterCapture={() => {}}
+          onPointerLeaveCapture={() => {}}
         />
       </Card.Content>
       <Fieldset.Footer>
@@ -54,6 +56,9 @@ export const LoginForm = () => {
           htmlType="submit"
           data-testid={"login-submit-button"}
           type={"success"}
+          placeholder={""}
+          onPointerEnterCapture={() => {}}
+          onPointerLeaveCapture={() => {}}
         >
           Submit
         </Button>

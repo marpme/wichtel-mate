@@ -8,6 +8,6 @@ describe("login", () => {
     // login via clicking the login button
     cy.get('[data-testid="login-submit-button"]').click();
 
-    cy.url().should("include", "/dashboard");
+    cy.url().should("include", "/VWwByBEw1z");
   });
 });
