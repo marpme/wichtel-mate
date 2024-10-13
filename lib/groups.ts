@@ -1,4 +1,4 @@
-type Group = {
+export type Group = {
   id: number;
   name: string;
   userMap: Map<string, string>;
@@ -40,6 +40,10 @@ export const userMap = new Map<string, string>(
     [],
   ),
 );
+
+export const UserKeys = groups.reduce((all, group) => {
+  return [...all, ...Array.from<string>(group.userMap.keys())];
+}, [] as string[]);
 
 export const getBelongingGroup = (userId: string): Array<Group> => {
   return groups.filter((group) => group.userMap.has(userId));

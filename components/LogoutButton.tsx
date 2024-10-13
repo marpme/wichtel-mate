@@ -10,7 +10,6 @@ export const LogoutButton = () => {
       scale={2 / 3}
       type="error"
       onClick={async () => {
-        await fetch("/api/logout");
         await router.push("/");
       }}
     >

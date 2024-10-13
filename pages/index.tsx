@@ -1,27 +1,9 @@
 import Head from "next/head";
 import { Card, Divider, Grid, Page, Text } from "@geist-ui/core";
 import "moment/locale/de";
-import { GetServerSideProps } from "next";
-import { hasValidAuth } from "../lib/login";
 import { useXMASDiff } from "../hooks/useXMASDiff";
 import { LoginForm } from "../components/LoginForm";
 import { WichtelImage } from "../components/WichtelImage";
-
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  if (hasValidAuth(context)) {
-    return {
-      redirect: {
-        destination: "/dashboard",
-        permanent: false,
-      },
-      props: {},
-    };
-  }
-
-  return {
-    props: {},
-  };
-};
 
 export default function Home() {
   const { timeUntil } = useXMASDiff();

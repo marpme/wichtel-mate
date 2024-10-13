@@ -9,6 +9,7 @@ import {
 } from "@geist-ui/core";
 import { useRef } from "react";
 import { useRouter } from "next/router";
+import { UserKeys } from "../lib/groups";
 
 export const LoginForm = () => {
   const router = useRouter();
@@ -22,23 +23,13 @@ export const LoginForm = () => {
         e.stopPropagation();
         e.preventDefault();
 
-        const response = await fetch("/api/login", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            login: ref.current?.value,
-          }),
-        });
-
-        if (response.status !== 204) {
+        if (!UserKeys.includes(ref.current?.value ?? "")) {
           setToast({
             text: "Hey du! Du bist noch kein helfender Wichtel, schau später nochmal vorbei!",
             type: "error",
           });
         } else {
-          router.push("/dashboard");
+          router.push("/" + ref.current?.value);
         }
       }}
     >
