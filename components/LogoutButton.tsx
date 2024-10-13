@@ -9,6 +9,9 @@ export const LogoutButton = () => {
       auto
       scale={2 / 3}
       type="error"
+      placeholder={""}
+      onPointerEnterCapture={() => {}}
+      onPointerLeaveCapture={() => {}}
       onClick={async () => {
         await router.push("/");
       }}
