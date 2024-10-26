@@ -24,8 +24,8 @@ importers:
         specifier: ^14.2.15
         version: 14.2.16(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       rand-seed:
-        specifier: ^1.0.2
-        version: 1.0.2
+        specifier: ^2.0.0
+        version: 2.1.7
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -1988,8 +1988,8 @@ packages:
   queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
 
-  rand-seed@1.0.2:
-    resolution: {integrity: sha512-Nu4jxelXx2hKyZJQvkRcUyc1n1ZDQk/VUYmY3hxYfXYGrMfCFqsJ9O6r5jtpt8KjqbllCB8qnIB86Oqy4s5gdw==}
+  rand-seed@2.1.7:
+    resolution: {integrity: sha512-Yaz75D2fTWtIr69iDd+PGwtQkFkqOIMQZl+W8U3NMR6F2a1UEk2FmnQkNd6Z1eNtL96Z5nznw5PKYk1Z9m6lxw==}
 
   range-parser@1.2.0:
     resolution: {integrity: sha512-kA5WQoNVo4t9lNx2kQNFCxKeBl5IbbSNBl1M/tLkw9WCn+hxNBAW5Qh8gdhs63CJnhjJ2zQWFoqPJP2sK1AV5A==}
@@ -4570,7 +4570,7 @@ snapshots:
 
   queue-microtask@1.2.3: {}
 
-  rand-seed@1.0.2: {}
+  rand-seed@2.1.7: {}
 
   range-parser@1.2.0: {}
 
