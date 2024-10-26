@@ -3,11 +3,8 @@ import "inter-ui/inter.css";
 import { CssBaseline, GeistProvider } from "@geist-ui/core";
 import Snowfall from "react-snowfall";
 import { useEffect, useState } from "react";
-import { QueryClient } from "@tanstack/query-core";
-import { QueryClientProvider } from "@tanstack/react-query";
-import { AppProps } from "next/app";
 
-const queryClient = new QueryClient();
+import { AppProps } from "next/app";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const [snowFlakes, setSnowFlakes] = useState(false);
@@ -17,7 +14,6 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   }, []);
 
   return (
-    <QueryClientProvider client={queryClient}>
       <GeistProvider themeType={"dark"}>
         {snowFlakes ? (
           <Snowfall
@@ -30,7 +26,6 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         <CssBaseline />
         <Component {...pageProps} />
       </GeistProvider>
-    </QueryClientProvider>
   );
 };
 
