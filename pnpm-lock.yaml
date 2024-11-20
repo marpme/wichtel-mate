@@ -16,7 +16,7 @@ importers:
         version: 1.0.2(@geist-ui/core@2.3.8(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react@18.3.1)
       inter-ui:
         specifier: ^4.0.0
-        version: 4.0.2
+        version: 4.1.0
       moment:
         specifier: ^2.29.4
         version: 2.30.1
@@ -1532,8 +1532,8 @@ packages:
     resolution: {integrity: sha512-7PnF4oN3CvZF23ADhA5wRaYEQpJ8qygSkbtTXWBeXWXmEVRXK+1ITciHWwHhsjv1TmW0MgacIv6hEi5pX5NQdA==}
     engines: {node: '>=10'}
 
-  inter-ui@4.0.2:
-    resolution: {integrity: sha512-YmfzwEtzuVzEenQwSB/tmmqi/A0a2GnFk4mG4ZFULXiO5DNk0fJWiO3o9i1sdVKuMVGx9iiNQnCq8ghWZJVVHw==}
+  inter-ui@4.1.0:
+    resolution: {integrity: sha512-lUJ5YLtpj7jWsrhTbN5w32MLOqISGFGOTMRNn+IGhLrbt67z5yvmBRoqpLCWLVlJ+l7kqnH6su4meEqvLMfAAA==}
     engines: {node: '>=16.0.0'}
 
   internal-slot@1.0.7:
@@ -4116,7 +4116,7 @@ snapshots:
 
   ini@2.0.0: {}
 
-  inter-ui@4.0.2: {}
+  inter-ui@4.1.0: {}
 
   internal-slot@1.0.7:
     dependencies:
