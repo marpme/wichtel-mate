@@ -11,11 +11,10 @@ export const peoplePicker = (users: Map<string, string>): PickResult[] => {
   const currentYear = new Date().getFullYear();
   const rand = new Rand(currentYear.toString(10));
 
-  let distributed = false;
   let index = -1;
-  let result: PickResult[] = [];
+  let result: PickResult[];
 
-  while (!distributed) {
+  while (true) {
     const selections = [];
     let hasSelf = false;
     index++;
@@ -41,7 +40,6 @@ export const peoplePicker = (users: Map<string, string>): PickResult[] => {
     }
 
     if (new Set(selections).size === selections.length && !hasSelf) {
-      distributed = true;
       break;
     }
   }

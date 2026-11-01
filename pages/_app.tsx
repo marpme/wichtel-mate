@@ -5,6 +5,8 @@ import Snowfall from "react-snowfall";
 import { useEffect, useState } from "react";
 
 import { AppProps } from "next/app";
+import { hearthTheme } from "../lib/theme";
+import { LightGarland } from "../components/LightGarland";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const [snowFlakes, setSnowFlakes] = useState(false);
@@ -14,7 +16,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   }, []);
 
   return (
-      <GeistProvider themeType={"dark"}>
+      <GeistProvider themes={[hearthTheme]} themeType={"hearth"}>
         {snowFlakes ? (
           <Snowfall
             // Changes the snowflake color
@@ -24,6 +26,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
           />
         ) : null}
         <CssBaseline />
+        <LightGarland />
         <Component {...pageProps} />
       </GeistProvider>
   );

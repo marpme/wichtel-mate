@@ -1,13 +1,102 @@
 html,
 body {
-  background-image: radial-gradient(#1e1e1e 1px,transparent 0), radial-gradient(#1e1e1e 1px,transparent 0);
-  background-position: 0 0,calc(1 * 25px) calc(1 * 25px);
-  background-attachment: fixed;
-  background-size: calc(1 * 50px) calc(1 * 50px);
-
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  /* warm hearth background: ember glow at the top, vignette at the edges,
+     warm speckle dots (overrides the Geist dotBackdrop on body) */
+  background-color: #140a07 !important;
+  background-image:
+    radial-gradient(ellipse 90% 45% at 50% -8%, rgba(224, 124, 44, 0.22), transparent 65%),
+    radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.55) 100%),
+    radial-gradient(#3a2115 1px, transparent 0),
+    radial-gradient(#3a2115 1px, transparent 0) !important;
+  background-position: 0 0, 0 0, 0 0, 25px 25px !important;
+  background-size: 100% 100%, 100% 100%, 50px 50px, 50px 50px !important;
+  background-attachment: fixed !important;
 }
 
+/* cozy serif headings in candle gold */
+h1,
+h2,
+h3,
+h4 {
+  font-family: Georgia, "Times New Roman", serif;
+  letter-spacing: 0.01em;
+  color: #eec27f;
+}
+
+h5,
+h6 {
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+/* warm wooden card with a soft firelight glow */
+.card {
+  background: linear-gradient(
+    180deg,
+    rgba(58, 33, 21, 0.55),
+    rgba(20, 10, 7, 0.9)
+  ) !important;
+  border-color: rgba(232, 180, 94, 0.22) !important;
+  box-shadow:
+    0 0 70px rgba(224, 140, 50, 0.1),
+    0 12px 40px rgba(0, 0, 0, 0.5) !important;
+}
+
+.divider {
+  border-color: rgba(232, 180, 94, 0.16) !important;
+}
+
+/* the Wichtel illustration gets a warm halo */
+img[alt="Wichtel"] {
+  filter: drop-shadow(0 0 26px rgba(232, 180, 94, 0.35));
+}
+
+/* string of lights across the top of every page */
+.garland {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  padding: 8px 16px 0;
+  pointer-events: none;
+}
+
+.garland::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #4a2c1c 8%,
+    #4a2c1c 92%,
+    transparent
+  );
+}
+
+.garland-bulb {
+  width: 9px;
+  height: 13px;
+  border-radius: 50% 50% 50% 50% / 62% 62% 38% 38%;
+  animation: garland-twinkle 2.6s ease-in-out infinite;
+}
+
+@keyframes garland-twinkle {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}

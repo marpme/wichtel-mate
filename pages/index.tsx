@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Link from "next/link";
 import { Card, Divider, Grid, Page, Text } from "@geist-ui/core";
 import "moment/locale/de";
 import { useXMASDiff } from "../hooks/useXMASDiff";
@@ -43,6 +44,17 @@ export default function Home() {
             </Card.Content>
             <Divider w={"100%"} margin={0} padding={0} />
             <LoginForm />
+            <Divider w={"100%"} margin={0} padding={0} />
+            <Card.Content>
+              <Link href={"/links"}>
+                <Text
+                  small
+                  style={{ cursor: "pointer", textAlign: "center" }}
+                >
+                  Persönliche Links für alle Wichtel
+                </Text>
+              </Link>
+            </Card.Content>
           </Card>
         </Grid>
       </Grid.Container>

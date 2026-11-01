@@ -1,0 +1,36 @@
+import { Themes } from "@geist-ui/core";
+
+// Warm "hearth" theme: deep brown-black background, candle-gold accents,
+// holly green for success, christmas red for error.
+export const hearthTheme = Themes.createFromDark({
+  type: "hearth",
+  palette: {
+    background: "#140a07",
+    foreground: "#f6ead9",
+    selection: "#e0a458",
+    secondary: "#a97652",
+    border: "#3a2115",
+    code: "#e8b45e",
+    accents_1: "#1c0f0a",
+    accents_2: "#2b1710",
+    accents_3: "#452619",
+    accents_4: "#5f3a26",
+    accents_5: "#84573a",
+    accents_6: "#a97652",
+    accents_7: "#e2b98f",
+    accents_8: "#f6ead9",
+    success: "#3e9e63",
+    successLight: "#55b87a",
+    successDark: "#2c7a4a",
+    successLighter: "#12291c",
+    error: "#c0392b",
+    errorLight: "#e05545",
+    errorDark: "#8f2a20",
+    errorLighter: "#3a1512",
+    warning: "#e8a13c",
+    warningLight: "#f2b45c",
+    warningDark: "#b57a24",
+    warningLighter: "#3a2a12",
+    link: "#e8b45e",
+  },
+});
