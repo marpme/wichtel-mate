@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { AppProps } from "next/app";
 import { hearthTheme } from "../lib/theme";
 import { LightGarland } from "../components/LightGarland";
+import { StarField } from "../components/StarField";
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const [snowFlakes, setSnowFlakes] = useState(false);
@@ -19,13 +20,13 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       <GeistProvider themes={[hearthTheme]} themeType={"hearth"}>
         {snowFlakes ? (
           <Snowfall
-            // Soft rose so the flakes stay visible on the bright background
-            color="#e0858c"
             // Controls the number of snowflakes that are created (default 150)
+            color="white"
             snowflakeCount={60}
           />
         ) : null}
         <CssBaseline />
+        <StarField />
         <LightGarland />
         <Component {...pageProps} />
       </GeistProvider>

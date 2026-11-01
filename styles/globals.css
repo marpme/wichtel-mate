@@ -2,32 +2,89 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  /* bright hearth background: whisper of red glow at the top, warm blush
-     vignette, warm speckle dots (overrides the Geist dotBackdrop on body) */
-  background-color: #fff8f4 !important;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text",
+    Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
+    Helvetica Neue, sans-serif;
+  /* tannenacht background: candle-gold glow at the top, a whisper of red and
+     holly green, dark fir gradient below (overrides the Geist dotBackdrop) */
+  background-color: #0a1810 !important;
   background-image:
-    radial-gradient(ellipse 90% 45% at 50% -8%, rgba(224, 82, 62, 0.08), transparent 65%),
-    radial-gradient(ellipse at center, transparent 60%, rgba(208, 52, 44, 0.03) 100%),
-    radial-gradient(#f5ddd6 1px, transparent 0),
-    radial-gradient(#f5ddd6 1px, transparent 0) !important;
-  background-position: 0 0, 0 0, 0 0, 25px 25px !important;
-  background-size: 100% 100%, 100% 100%, 50px 50px, 50px 50px !important;
+    radial-gradient(70% 40% at 50% -5%, rgba(232, 184, 75, 0.16), transparent 60%),
+    radial-gradient(45% 35% at 85% 15%, rgba(199, 54, 47, 0.14), transparent 65%),
+    radial-gradient(50% 40% at 10% 20%, rgba(87, 184, 126, 0.1), transparent 65%),
+    radial-gradient(80% 60% at 50% 110%, rgba(14, 42, 26, 0.9), transparent 70%),
+    linear-gradient(180deg, #10281a 0%, #0a1810 55%, #071009 100%) !important;
+  background-position: 0 0, 0 0, 0 0, 0 0, 0 0 !important;
+  background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100% !important;
   background-attachment: fixed !important;
 }
 
-/* apple-esque headings: Inter with tight tracking, near-black "ink" */
+::selection {
+  background: rgba(232, 184, 75, 0.35);
+}
+
+/* twinkling star field behind the content (two layers, offset phases) */
+.star-field {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-repeat: no-repeat;
+  animation: star-twinkle 7s ease-in-out infinite;
+}
+
+.star-field-a {
+  background-image:
+    radial-gradient(1.6px 1.6px at 8% 12%, #f4e9c8, transparent),
+    radial-gradient(1.2px 1.2px at 22% 6%, #f4e9c8, transparent),
+    radial-gradient(1.8px 1.8px at 37% 15%, #f4e9c8, transparent),
+    radial-gradient(1.2px 1.2px at 52% 4%, #f4e9c8, transparent),
+    radial-gradient(1.6px 1.6px at 68% 11%, #f4e9c8, transparent),
+    radial-gradient(1.2px 1.2px at 81% 18%, #f4e9c8, transparent),
+    radial-gradient(1.6px 1.6px at 93% 8%, #f4e9c8, transparent),
+    radial-gradient(1.2px 1.2px at 15% 28%, #f4e9c8, transparent),
+    radial-gradient(1.6px 1.6px at 46% 24%, #f4e9c8, transparent),
+    radial-gradient(1.2px 1.2px at 74% 30%, #f4e9c8, transparent);
+}
+
+.star-field-b {
+  background-image:
+    radial-gradient(1.2px 1.2px at 12% 9%, #f4e9c8, transparent),
+    radial-gradient(1.8px 1.8px at 28% 20%, #f4e9c8, transparent),
+    radial-gradient(1.2px 1.2px at 43% 8%, #f4e9c8, transparent),
+    radial-gradient(1.6px 1.6px at 58% 17%, #f4e9c8, transparent),
+    radial-gradient(1.2px 1.2px at 77% 5%, #f4e9c8, transparent),
+    radial-gradient(1.6px 1.6px at 88% 25%, #f4e9c8, transparent),
+    radial-gradient(1.2px 1.2px at 6% 33%, #f4e9c8, transparent),
+    radial-gradient(1.6px 1.6px at 33% 32%, #f4e9c8, transparent),
+    radial-gradient(1.2px 1.2px at 62% 28%, #f4e9c8, transparent),
+    radial-gradient(1.6px 1.6px at 96% 15%, #f4e9c8, transparent);
+  animation-delay: -3.2s;
+}
+
+@keyframes star-twinkle {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
+/* headings: candle-light gradient (white into warm gold) */
 h1,
 h2,
 h3 {
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    sans-serif;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Display",
+    "Segoe UI", Roboto, sans-serif;
   font-weight: 700;
   letter-spacing: -0.022em;
+  background: linear-gradient(180deg, #ffffff 30%, #e8d9a8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
   /* !important: Geist's Text sets its own color via a class, which would
      otherwise beat this element selector */
-  color: #1d1d1f !important;
+  color: transparent !important;
 }
 
 h4,
@@ -39,35 +96,79 @@ h6 {
   letter-spacing: -0.01em;
 }
 
-/* frosted-glass card: translucent white over the warm body gradient, large
-   radius, hairline border, soft neutral layered shadow (no color cast) */
+/* frosted-glass card on the dark night: faint white glass, soft deep shadow,
+   and a golden hairline across the top like gift ribbon */
 .card {
-  background: rgba(255, 255, 255, 0.72) !important;
-  border-color: rgba(0, 0, 0, 0.06) !important;
+  position: relative;
+  background: rgba(255, 255, 255, 0.05) !important;
+  border-color: rgba(255, 255, 255, 0.09) !important;
   border-radius: 24px !important;
-  box-shadow:
-    0 1px 1px rgba(0, 0, 0, 0.02),
-    0 8px 24px rgba(0, 0, 0, 0.05),
-    0 24px 48px rgba(0, 0, 0, 0.05) !important;
-  backdrop-filter: saturate(180%) blur(30px);
-  -webkit-backdrop-filter: saturate(180%) blur(30px);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.35) !important;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(232, 184, 75, 0.5),
+    transparent
+  );
+  pointer-events: none;
 }
 
 .divider {
-  border-color: rgba(0, 0, 0, 0.08) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
 }
 
-/* apple-style pill buttons (Geist's own radius is a themed 12px) */
+/* pill buttons; .btn-primary is the red "gift ribbon" gradient action */
 .btn {
   border-radius: 980px !important;
-  font-weight: 500 !important;
+  font-weight: 600 !important;
 }
 
-/* the Wichtel illustration: full color, soft neutral shadow, overhanging
-   the top edge of the card */
+.btn-primary {
+  background: linear-gradient(180deg, #d8503f, #b03328) !important;
+  border-color: transparent !important;
+  color: #ffffff !important;
+  box-shadow: 0 8px 24px rgba(212, 80, 63, 0.45) !important;
+  transition: filter 200ms ease, transform 100ms ease !important;
+}
+
+.btn-primary:hover:not(:disabled) {
+  filter: brightness(1.1) !important;
+}
+
+.btn-primary:active:not(:disabled) {
+  transform: scale(0.97) !important;
+}
+
+/* inputs: dark glass with a candle-gold focus ring */
+.input-container {
+  border-radius: 12px !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  background: rgba(255, 255, 255, 0.06) !important;
+  transition: border-color 200ms ease, box-shadow 200ms ease !important;
+}
+
+.input-container:focus-within {
+  border-color: rgba(232, 184, 75, 0.5) !important;
+  box-shadow: 0 0 0 3px rgba(232, 184, 75, 0.15) !important;
+}
+
+/* the Wichtel illustration: candle-gold halo, overhanging the top edge of
+   the card */
 img[alt="Wichtel"] {
-  filter: saturate(1.05) brightness(1.02)
-    drop-shadow(0 12px 24px rgba(0, 0, 0, 0.14));
+  filter: saturate(1.05)
+    drop-shadow(0 0 32px rgba(232, 184, 75, 0.22))
+    drop-shadow(0 16px 32px rgba(0, 0, 0, 0.45));
 }
 
 .wichtel-head {
@@ -82,14 +183,141 @@ img[alt="Wichtel"] {
 .group-eyebrow {
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  color: #c9372c !important;
+  color: #f1d68c !important;
 }
 
 /* muted uppercase group tag above the big partner name */
 .group-tag {
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: #a68a82 !important;
+  color: rgba(244, 239, 230, 0.45) !important;
+}
+
+/* sealed gift button: tap to reveal the assigned partner */
+.reveal-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 12px;
+  padding: 14px 28px;
+  border: none;
+  border-radius: 20px;
+  background: linear-gradient(180deg, #d8503f, #8e2318);
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  box-shadow: 0 16px 44px rgba(212, 80, 63, 0.5);
+  transition: filter 200ms ease, transform 100ms ease;
+  animation: gift-hover 2.6s ease-in-out infinite;
+}
+
+.reveal-button:hover:not(:disabled) {
+  filter: brightness(1.1);
+}
+
+.reveal-button:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.reveal-button:disabled {
+  cursor: default;
+  filter: saturate(0.6) brightness(0.8);
+}
+
+/* the gift rattles before it opens */
+.reveal-button.shaking {
+  animation: gift-shake 0.65s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+@keyframes gift-shake {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  10%,
+  90% {
+    transform: translate3d(-2px, 0, 0) rotate(-1.5deg);
+  }
+  20%,
+  80% {
+    transform: translate3d(3px, 0, 0) rotate(1.5deg);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-5px, 0, 0) rotate(-2.5deg);
+  }
+  40%,
+  60% {
+    transform: translate3d(5px, 0, 0) rotate(2.5deg);
+  }
+}
+
+@keyframes gift-hover {
+  0%,
+  100% {
+    translate: 0 0;
+  }
+  50% {
+    translate: 0 -4px;
+  }
+}
+
+/* the name pops in with a bounce and a sparkle burst */
+.reveal-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.revealed-name {
+  animation: name-reveal 0.65s cubic-bezier(0.22, 1.4, 0.36, 1) both;
+}
+
+@keyframes name-reveal {
+  0% {
+    opacity: 0;
+    transform: translateY(14px) scale(0.82);
+  }
+  55% {
+    opacity: 1;
+    transform: translateY(0) scale(1.08);
+  }
+  75% {
+    transform: scale(0.98) rotate(-0.6deg);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.reveal-sparkle {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  color: #e8b84b;
+  filter: drop-shadow(0 0 6px rgba(232, 184, 75, 0.8));
+  animation: sparkle-burst 0.9s ease-out both;
+  pointer-events: none;
+}
+
+@keyframes sparkle-burst {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.4);
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy)))
+      scale(1) rotate(160deg);
+  }
 }
 
 /* string of lights across the top of every page */
@@ -116,8 +344,8 @@ img[alt="Wichtel"] {
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(208, 82, 62, 0.45) 8%,
-    rgba(208, 82, 62, 0.45) 92%,
+    rgba(255, 255, 255, 0.16) 8%,
+    rgba(255, 255, 255, 0.16) 92%,
     transparent
   );
 }
@@ -126,7 +354,7 @@ img[alt="Wichtel"] {
   width: 9px;
   height: 13px;
   border-radius: 50% 50% 50% 50% / 62% 62% 38% 38%;
-  animation: garland-twinkle 2.6s ease-in-out infinite;
+  animation: garland-twinkle 3.2s ease-in-out infinite;
 }
 
 @keyframes garland-twinkle {
@@ -134,7 +362,10 @@ img[alt="Wichtel"] {
   100% {
     opacity: 1;
   }
-  50% {
-    opacity: 0.35;
+  45% {
+    opacity: 0.45;
+  }
+  60% {
+    opacity: 1;
   }
 }

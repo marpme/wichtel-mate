@@ -18,6 +18,38 @@ import { getPickedPartner } from "../lib/group";
 import { UserKeys } from "../lib/groups";
 import { useEffect, useState } from "react";
 
+const GiftIcon = () => (
+  <svg
+    viewBox="0 0 24 24"
+    width={"22"}
+    height={"22"}
+    fill="none"
+    stroke="currentColor"
+    strokeWidth={"1.7"}
+    strokeLinecap={"round"}
+    strokeLinejoin={"round"}
+    aria-hidden
+  >
+    <rect x="3" y="8" width="18" height="4" rx="1" />
+    <path d="M12 8v13" />
+    <path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7" />
+    <path d="M7.5 8a2.5 2.5 0 0 1 0-5C11 3 12 8 12 8s1-5 4.5-5a2.5 2.5 0 0 1 0 5C13 8 12 8 12 8s-1 0-4.5 0Z" />
+  </svg>
+);
+
+const SparkleIcon = () => (
+  <svg
+    viewBox="0 0 24 24"
+    width={"14"}
+    height={"14"}
+    fill="currentColor"
+    aria-hidden
+    style={{ display: "block" }}
+  >
+    <path d="M12 2l2 8 8 2-8 2-2 8-2-8-8-2 8-2z" />
+  </svg>
+);
+
 export const getStaticPaths: GetStaticPaths = () => {
   return {
     paths: UserKeys.map((userId) => {
@@ -51,6 +83,16 @@ const Dashboard = ({
   const [groups, setGroups] = useState<
     Awaited<ReturnType<typeof getPickedPartner>>
   >([]);
+  const [revealed, setRevealed] = useState<Record<number, boolean>>({});
+  const [shaking, setShaking] = useState<Record<number, boolean>>({});
+
+  const reveal = (groupId: number) => {
+    setShaking((prev) => ({ ...prev, [groupId]: true }));
+    setTimeout(() => {
+      setShaking((prev) => ({ ...prev, [groupId]: false }));
+      setRevealed((prev) => ({ ...prev, [groupId]: true }));
+    }, 650);
+  };
 
   useEffect(() => {
     if (!userId) {
@@ -102,9 +144,49 @@ const Dashboard = ({
                     </Text>
                   </Grid>
                   <Grid xs={24} justify={"center"}>
-                    <Text h2 margin={0}>
-                      {group.pickedPerson || "lädt ..."}
-                    </Text>
+                    {revealed[group.id] ? (
+                      <div className="reveal-wrap">
+                        <span
+                          className="reveal-sparkle"
+                          style={{ ["--dx" as string]: "-58px", ["--dy" as string]: "-46px" }}
+                        >
+                          <SparkleIcon />
+                        </span>
+                        <span
+                          className="reveal-sparkle"
+                          style={{ ["--dx" as string]: "58px", ["--dy" as string]: "-40px" }}
+                        >
+                          <SparkleIcon />
+                        </span>
+                        <span
+                          className="reveal-sparkle"
+                          style={{ ["--dx" as string]: "-66px", ["--dy" as string]: "26px" }}
+                        >
+                          <SparkleIcon />
+                        </span>
+                        <span
+                          className="reveal-sparkle"
+                          style={{ ["--dx" as string]: "64px", ["--dy" as string]: "34px" }}
+                        >
+                          <SparkleIcon />
+                        </span>
+                        <Text h2 margin={0} className={"revealed-name"}>
+                          {group.pickedPerson || "lädt ..."}
+                        </Text>
+                      </div>
+                    ) : (
+                      <button
+                        type="button"
+                        className={
+                          shaking[group.id] ? "reveal-button shaking" : "reveal-button"
+                        }
+                        disabled={!group.pickedPerson || shaking[group.id]}
+                        onClick={() => reveal(group.id)}
+                      >
+                        <GiftIcon />
+                        <span>{"Aufdecken"}</span>
+                      </button>
+                    )}
                   </Grid>
                 </Grid.Container>
               </Card.Content>

@@ -56,6 +56,7 @@ export const LoginForm = () => {
           htmlType="submit"
           data-testid={"login-submit-button"}
           type={"error-light"}
+          className={"btn-primary"}
           placeholder={""}
           onPointerEnterCapture={() => {}}
           onPointerLeaveCapture={() => {}}

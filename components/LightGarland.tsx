@@ -1,4 +1,4 @@
-const BULB_COLORS = ["#ff5147", "#ffb340", "#4fc287", "#fff5f2"];
+const BULB_COLORS = ["#e8b84b", "#e05b52", "#57b87e", "#8fcbe8"];
 
 export const LightGarland = ({ bulbs = 26 }: { bulbs?: number }) => (
   <div className="garland" aria-hidden="true">
