@@ -4,6 +4,10 @@ allowBuilds:
   sharp: false
   unrs-resolver: false
 
+minimumReleaseAgeExclude:
+  - '@tanstack/eslint-plugin-query@5.105.1'
+  - globals@17.14.0
+
 overrides:
   compression: ^1.8.2
   minimatch: ^11.0.3
