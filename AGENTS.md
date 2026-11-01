@@ -5,7 +5,7 @@ family/friend groups. The UI is in German. Each participant gets a personal
 "Wichtel ID"; entering it on the landing page routes to a statically
 pre-generated page (`/[id]`) that reveals only that person's assigned gift
 recipient. Every `/<id>` URL is also a permanent static link that can be shared
-or bookmarked directly — `pages/links.tsx` lists all of them.
+or bookmarked directly.
 
 Privacy: participant names and Wichtel IDs are personal data. They live only in
 `lib/groups.ts` — never copy them into docs, AGENTS.md, comments, or commits.
@@ -31,15 +31,11 @@ Privacy: participant names and Wichtel IDs are personal data. They live only in
   on Jan 1; `lib/peoplePicker.spec.ts` pins each year — add a test case per year
 - `lib/group.ts` — `getPickedPartner(userId)`: the user's groups + picked partner
 - `pages/index.tsx` — landing: countdown to Dec 24 (`hooks/useXMASDiff.ts`) +
-  `LoginForm` (validates the ID against `UserKeys`, routes to `/[id]`), plus a
-  link to `/links`
+  `LoginForm` (validates the ID against `UserKeys`, routes to `/[id]`)
 - `pages/[id].tsx` — dashboard: `getStaticPaths` prerenders one static page per
-  `UserKeys` entry (`fallback: "blocking"`); the partner is resolved client-side
-  via `getPickedPartner`
-- `pages/links.tsx` — per-group overview of all personal links (`<origin>/<id>`)
-  with a copy button. The origin is read client-side (`window.location.origin`)
-  because the host is unknown at export time; render the bare path before mount
-  to avoid hydration mismatch
+  `UserKeys` entry with `fallback: false` (required: `"blocking"` is rejected
+  with `output: "export"` in Next 16; unknown IDs get the exported 404 page);
+  the partner is resolved client-side via `getPickedPartner`
 
 ## Commands
 
@@ -63,9 +59,12 @@ Cypress binary is missing, fetch it directly with
 ## Layout
 
 - `pages/` — `index.tsx` (landing + login), `[id].tsx` (per-user dashboard),
-  `links.tsx` (link overview), `_app.tsx` (GeistProvider dark theme + snowfall)
+  `_app.tsx` (GeistProvider "hearth" theme + garland + snowfall)
 - `components/` — Header, LoginForm, LogoutButton, WichtelImage
-- `hooks/useXMASDiff.ts` — countdown string to Dec 24 (moment, de locale)
+- `hooks/useXMASDiff.ts` — countdown phrase to Dec 24 in exact days ("Nur noch
+  53 Tage bis Heiligabend!", "Heute ist Heiligabend!" on Dec 24, rolls over to
+  next year afterwards); moment with de locale. Call sites render `{timeUntil}`
+  as a complete sentence
 - `lib/` — `groups.ts` (data), `peoplePicker.ts` (assignment), `group.ts`
   (lookup), `*.spec.ts` (vitest, mock the system year; snapshot in
   `__snapshots__/`)
@@ -74,12 +73,12 @@ Cypress binary is missing, fetch it directly with
 ## Conventions / gotchas
 
 - Add participants or groups only in `lib/groups.ts`; new IDs automatically get
-  a static page, login access, and an entry on `/links`. IDs are case-sensitive
-  10-char strings
+  a static page and login access. IDs are case-sensitive 10-char strings
 - Do not change the picker seeding — it would silently change existing years'
   assignments (the tests pin them)
 - Static export: no API routes, no SSR data fetching; everything is computed at
-  build time from `lib/`. Geist `Text` has no `textAlign` prop — use `style`
+  build time from `lib/`. Dynamic routes need `getStaticPaths` with
+  `fallback: false`. Geist `Text` has no `textAlign` prop — use `style`
 - The IDs ship in the client JS bundle (login validation), so they are
   unguessable but not secret; any extra "protection" would be client-side only
 - UI copy is German; keep new user-facing strings in German
@@ -88,8 +87,19 @@ Cypress binary is missing, fetch it directly with
   background gradient, card glow, garland and heading styles are in
   `styles/globals.css`; `components/LightGarland.tsx` renders the string of
   lights on every page via `_app.tsx`. Global overrides need `!important` to
-  beat Geist's injected styled-jsx rules
+  beat Geist's injected styled-jsx rules (Geist `Text` sets its own color via
+  a class, so heading colors need `!important` too). The Wichtel image wrapper
+  `.wichtel-head` overhangs the card's top edge (`margin-top: -44px`; Card does
+  not clip overflow) and `img[alt="Wichtel"]` desaturates it
+  (`saturate(.72)`) with a warm halo
+- Headings (h1-h3) use the self-hosted "Fraunces" variable font (OFL,
+  `Fraunces-Variable.ttf` + `OFL-Fraunces.txt` in `public/fonts/`, one
+  `@font-face` with `font-weight: 100 900` in `globals.css`; headings set
+  `font-variation-settings: "SOFT" 100, "WONK" 0` for warm, non-quirky
+  letterforms) — h4-h6 fall back to Georgia serif, body stays sans. If the
+  font is swapped, replace the files in `public/fonts/` and the `@font-face`
+  block; no build-time network needed
 - Verified workflow: `./node_modules/.bin/vitest run` (202 tests),
   `./node_modules/.bin/eslint .`, `./node_modules/.bin/next build`, then check
-  `out/`: one html per user ID plus `links.html` and `index.html`. Cypress:
+  `out/`: one html per user ID plus `index.html` and `404.html`. Cypress:
   `build` + `serve` on :3000 first, then `./node_modules/.bin/cypress run --e2e`
