@@ -4,69 +4,70 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  /* warm hearth background: ember glow at the top, vignette at the edges,
-     warm speckle dots (overrides the Geist dotBackdrop on body) */
-  background-color: #140a07 !important;
+  /* bright hearth background: whisper of red glow at the top, warm blush
+     vignette, warm speckle dots (overrides the Geist dotBackdrop on body) */
+  background-color: #fff8f4 !important;
   background-image:
-    radial-gradient(ellipse 90% 45% at 50% -8%, rgba(224, 124, 44, 0.22), transparent 65%),
-    radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.55) 100%),
-    radial-gradient(#3a2115 1px, transparent 0),
-    radial-gradient(#3a2115 1px, transparent 0) !important;
+    radial-gradient(ellipse 90% 45% at 50% -8%, rgba(224, 82, 62, 0.08), transparent 65%),
+    radial-gradient(ellipse at center, transparent 60%, rgba(208, 52, 44, 0.03) 100%),
+    radial-gradient(#f5ddd6 1px, transparent 0),
+    radial-gradient(#f5ddd6 1px, transparent 0) !important;
   background-position: 0 0, 0 0, 0 0, 25px 25px !important;
   background-size: 100% 100%, 100% 100%, 50px 50px, 50px 50px !important;
   background-attachment: fixed !important;
 }
 
-@font-face {
-  font-family: "Fraunces";
-  src: url("/fonts/Fraunces-Variable.ttf") format("truetype");
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* warm old-style display serif for the big headings (soft terminals, no
-   wonk), cozy serif for the rest */
+/* apple-esque headings: Inter with tight tracking, near-black "ink" */
 h1,
 h2,
 h3 {
-  font-family: "Fraunces", Georgia, serif;
-  font-optical-sizing: auto;
-  font-variation-settings: "SOFT" 100, "WONK" 0;
-  letter-spacing: 0.01em;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.022em;
   /* !important: Geist's Text sets its own color via a class, which would
      otherwise beat this element selector */
-  color: #eec27f !important;
+  color: #1d1d1f !important;
 }
 
 h4,
 h5,
 h6 {
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.01em;
 }
 
-/* warm wooden card with a soft firelight glow */
+/* frosted-glass card: translucent white over the warm body gradient, large
+   radius, hairline border, soft neutral layered shadow (no color cast) */
 .card {
-  background: linear-gradient(
-    180deg,
-    rgba(58, 33, 21, 0.55),
-    rgba(20, 10, 7, 0.9)
-  ) !important;
-  border-color: rgba(232, 180, 94, 0.22) !important;
+  background: rgba(255, 255, 255, 0.72) !important;
+  border-color: rgba(0, 0, 0, 0.06) !important;
+  border-radius: 24px !important;
   box-shadow:
-    0 0 70px rgba(224, 140, 50, 0.1),
-    0 12px 40px rgba(0, 0, 0, 0.5) !important;
+    0 1px 1px rgba(0, 0, 0, 0.02),
+    0 8px 24px rgba(0, 0, 0, 0.05),
+    0 24px 48px rgba(0, 0, 0, 0.05) !important;
+  backdrop-filter: saturate(180%) blur(30px);
+  -webkit-backdrop-filter: saturate(180%) blur(30px);
 }
 
 .divider {
-  border-color: rgba(232, 180, 94, 0.16) !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
 }
 
-/* the Wichtel illustration: slightly desaturated, warm halo, and overhanging
+/* apple-style pill buttons (Geist's own radius is a themed 12px) */
+.btn {
+  border-radius: 980px !important;
+  font-weight: 500 !important;
+}
+
+/* the Wichtel illustration: full color, soft neutral shadow, overhanging
    the top edge of the card */
 img[alt="Wichtel"] {
-  filter: saturate(0.72) brightness(0.96)
-    drop-shadow(0 0 26px rgba(232, 180, 94, 0.35));
+  filter: saturate(1.05) brightness(1.02)
+    drop-shadow(0 12px 24px rgba(0, 0, 0, 0.14));
 }
 
 .wichtel-head {
@@ -81,14 +82,14 @@ img[alt="Wichtel"] {
 .group-eyebrow {
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  color: #c98d4b !important;
+  color: #c9372c !important;
 }
 
 /* muted uppercase group tag above the big partner name */
 .group-tag {
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: #8a6a4f !important;
+  color: #a68a82 !important;
 }
 
 /* string of lights across the top of every page */
@@ -115,8 +116,8 @@ img[alt="Wichtel"] {
   background: linear-gradient(
     90deg,
     transparent,
-    #4a2c1c 8%,
-    #4a2c1c 92%,
+    rgba(208, 82, 62, 0.45) 8%,
+    rgba(208, 82, 62, 0.45) 92%,
     transparent
   );
 }

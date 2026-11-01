@@ -82,23 +82,25 @@ Cypress binary is missing, fetch it directly with
 - The IDs ship in the client JS bundle (login validation), so they are
   unguessable but not secret; any extra "protection" would be client-side only
 - UI copy is German; keep new user-facing strings in German
-- Theming: warm "hearth" theme lives in `lib/theme.ts`
-  (`Themes.createFromDark`, type `"hearth"`, wired in `pages/_app.tsx`);
-  background gradient, card glow, garland and heading styles are in
+- Theming: bright "hearth" theme lives in `lib/theme.ts`
+  (`Themes.createFromLight`, type `"hearth"`, wired in `pages/_app.tsx`);
+  background gradient, frosted-glass card, garland and heading styles are in
   `styles/globals.css`; `components/LightGarland.tsx` renders the string of
-  lights on every page via `_app.tsx`. Global overrides need `!important` to
+  lights on every page via `_app.tsx`. The theme also sets Apple-ish tokens:
+  `layout.radius: 12px` (inputs/menus) and soft neutral `expressiveness`
+  shadows; `.btn` is overridden to a pill (`border-radius: 980px`) in
+  `globals.css`. Global overrides need `!important` to
   beat Geist's injected styled-jsx rules (Geist `Text` sets its own color via
   a class, so heading colors need `!important` too). The Wichtel image wrapper
   `.wichtel-head` overhangs the card's top edge (`margin-top: -44px`; Card does
-  not clip overflow) and `img[alt="Wichtel"]` desaturates it
-  (`saturate(.72)`) with a warm halo
-- Headings (h1-h3) use the self-hosted "Fraunces" variable font (OFL,
-  `Fraunces-Variable.ttf` + `OFL-Fraunces.txt` in `public/fonts/`, one
-  `@font-face` with `font-weight: 100 900` in `globals.css`; headings set
-  `font-variation-settings: "SOFT" 100, "WONK" 0` for warm, non-quirky
-  letterforms) — h4-h6 fall back to Georgia serif, body stays sans. If the
-  font is swapped, replace the files in `public/fonts/` and the `@font-face`
-  block; no build-time network needed
+  not clip overflow) and `img[alt="Wichtel"]` gets a soft neutral
+  `drop-shadow`. Snowfall in `_app.tsx` is tinted soft rose (`#e0858c`) so
+  flakes stay visible on the light background
+- Headings (h1-h6) use the self-hosted Inter font (`inter-ui`, loaded in
+  `pages/_app.tsx`) with tight tracking (`-0.022em`) and apple-red color for
+  h1-h3, styled in `styles/globals.css`. The former Fraunces display font is
+  no longer referenced; its files (`Fraunces-Variable.ttf` +
+  `OFL-Fraunces.txt`) still sit unused in `public/fonts/` and can be deleted
 - Verified workflow: `./node_modules/.bin/vitest run` (202 tests),
   `./node_modules/.bin/eslint .`, `./node_modules/.bin/next build`, then check
   `out/`: one html per user ID plus `index.html` and `404.html`. Cypress:

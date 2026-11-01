@@ -19,8 +19,8 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       <GeistProvider themes={[hearthTheme]} themeType={"hearth"}>
         {snowFlakes ? (
           <Snowfall
-            // Changes the snowflake color
-            color="white"
+            // Soft rose so the flakes stay visible on the bright background
+            color="#e0858c"
             // Controls the number of snowflakes that are created (default 150)
             snowflakeCount={60}
           />
