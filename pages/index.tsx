@@ -1,5 +1,4 @@
 import Head from "next/head";
-import Link from "next/link";
 import { Card, Divider, Grid, Page, Text } from "@geist-ui/core";
 import "moment/locale/de";
 import { useXMASDiff } from "../hooks/useXMASDiff";
@@ -23,38 +22,24 @@ export default function Home() {
       <Grid.Container alignItems={"center"} justify={"center"}>
         <Grid xs={22} alignItems={"center"} justify={"center"}>
           <Card width={"375px"}>
-            <div style={{ padding: "10px" }}>
+            <div className="wichtel-head">
               <WichtelImage />
             </div>
             <Card.Content>
-              <Text h3>
-                Bald ist es wieder soweit! &mdash;
-                <br /> Nur noch {timeUntil} verbleiben!
-              </Text>
+              <Text h3>Bald ist wieder Wichtelzeit!</Text>
+              <Text p>{timeUntil}</Text>
               <Text small>
-                Liebe Helfer: innen auch dieses Jahr begrüßen wir euch wieder
-                recht Herzlich zum jährlichen Wichtelevent.
+                Liebe Wichtelinnen und Wichtel, auch dieses Jahr laden wir euch
+                herzlich zu unserem jährlichen Wichtelevent ein.
               </Text>
               <Text small p>
-                Auch dieses Jahr zählt es wieder andere Menschen glücklich zu
-                machen und sich dabei selbst über eine kleine Überraschung
-                freuen zu können. Daher seid ihr herzlichst eingeladen dieses
-                Jahr teilzunehmen!
+                Denn das Schönste an der Weihnachtszeit ist es, anderen eine
+                Freude zu machen und sich selbst auf eine kleine
+                Überraschung zu freuen. Sei gerne dabei!
               </Text>
             </Card.Content>
             <Divider w={"100%"} margin={0} padding={0} />
             <LoginForm />
-            <Divider w={"100%"} margin={0} padding={0} />
-            <Card.Content>
-              <Link href={"/links"}>
-                <Text
-                  small
-                  style={{ cursor: "pointer", textAlign: "center" }}
-                >
-                  Persönliche Links für alle Wichtel
-                </Text>
-              </Link>
-            </Card.Content>
           </Card>
         </Grid>
       </Grid.Container>

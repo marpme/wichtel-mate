@@ -17,16 +17,29 @@ body {
   background-attachment: fixed !important;
 }
 
-/* cozy serif headings in candle gold */
-h1,
-h2,
-h3,
-h4 {
-  font-family: Georgia, "Times New Roman", serif;
-  letter-spacing: 0.01em;
-  color: #eec27f;
+@font-face {
+  font-family: "Fraunces";
+  src: url("/fonts/Fraunces-Variable.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
 }
 
+/* warm old-style display serif for the big headings (soft terminals, no
+   wonk), cozy serif for the rest */
+h1,
+h2,
+h3 {
+  font-family: "Fraunces", Georgia, serif;
+  font-optical-sizing: auto;
+  font-variation-settings: "SOFT" 100, "WONK" 0;
+  letter-spacing: 0.01em;
+  /* !important: Geist's Text sets its own color via a class, which would
+     otherwise beat this element selector */
+  color: #eec27f !important;
+}
+
+h4,
 h5,
 h6 {
   font-family: Georgia, "Times New Roman", serif;
@@ -49,9 +62,33 @@ h6 {
   border-color: rgba(232, 180, 94, 0.16) !important;
 }
 
-/* the Wichtel illustration gets a warm halo */
+/* the Wichtel illustration: slightly desaturated, warm halo, and overhanging
+   the top edge of the card */
 img[alt="Wichtel"] {
-  filter: drop-shadow(0 0 26px rgba(232, 180, 94, 0.35));
+  filter: saturate(0.72) brightness(0.96)
+    drop-shadow(0 0 26px rgba(232, 180, 94, 0.35));
+}
+
+.wichtel-head {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  margin-top: -60px;
+}
+
+/* small uppercase caption above each revealed partner name */
+.group-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: #c98d4b !important;
+}
+
+/* muted uppercase group tag above the big partner name */
+.group-tag {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #8a6a4f !important;
 }
 
 /* string of lights across the top of every page */

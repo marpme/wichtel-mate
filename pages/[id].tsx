@@ -1,6 +1,5 @@
 import {
   Card,
-  Divider,
   Fieldset,
   Grid,
   Page,
@@ -24,7 +23,8 @@ export const getStaticPaths: GetStaticPaths = () => {
     paths: UserKeys.map((userId) => {
       return { params: { id: userId } };
     }),
-    fallback: "blocking",
+    // "blocking" is rejected with output: "export"; unknown IDs get the 404 page
+    fallback: false,
   };
 };
 
@@ -74,41 +74,46 @@ const Dashboard = ({
       <Grid.Container alignItems={"center"} justify={"center"}>
         <Grid xs={24} alignItems={"center"} justify={"center"}>
           <Card width={"375px"}>
-            <div
-              style={{
-                padding: "10px",
-                display: "flex",
-                alignContent: "center",
-                justifyContent: "center",
-              }}
-            >
+            <div className="wichtel-head">
               <WichtelImage />
             </div>
             <Card.Content>
               <Text h3>
-                Willkommen zurück, {groups.at(0)?.person} &mdash;
-                <br /> nur noch {timeUntil} verbleiben!
+                Schön, dass du da bist, {groups.at(0)?.person}!
               </Text>
+              <Text p>{timeUntil}</Text>
             </Card.Content>
-            {groups.map((group) => (
-              <>
-                <Divider w={"100%"} />
-                <Card.Content>
-                  <Grid.Container gap={2} justify={"center"}>
-                    <Grid xs={24}>
-                      <Text h6 style={{ color: "#ccc" }} p>
-                        {group.name} &mdash; Wichtelpartner:
-                      </Text>
-                    </Grid>
-                    <Grid xs={24} justify={"center"}>
-                      <Text h2 margin={0}>
-                        &bdquo;{group.pickedPerson || "lädt ..."}&rdquo;
-                      </Text>
-                    </Grid>
-                  </Grid.Container>
-                </Card.Content>
-              </>
+            <Card.Content>
+              <div style={{ textAlign: "center" }}>
+                <Text small className="group-eyebrow">
+                  {groups.length > 1
+                    ? "Deine Wichtelpartner"
+                    : "Dein Wichtelpartner"}
+                </Text>
+              </div>
+            </Card.Content>
+            {groups.map((group, index) => (
+              <Card.Content key={group.id}>
+                {index > 0 && <div style={{ height: "24px" }} />}
+                <Grid.Container gap={1} justify={"center"}>
+                  <Grid xs={24} justify={"center"}>
+                    <Text small className="group-tag" p margin={0}>
+                      {group.name}
+                    </Text>
+                  </Grid>
+                  <Grid xs={24} justify={"center"}>
+                    <Text h2 margin={0}>
+                      {group.pickedPerson || "lädt ..."}
+                    </Text>
+                  </Grid>
+                </Grid.Container>
+              </Card.Content>
             ))}
+            <Card.Content>
+              <div style={{ textAlign: "center" }}>
+                <Text small>Viel Freude beim Aussuchen und Schenken!</Text>
+              </div>
+            </Card.Content>
             <Fieldset.Footer>
               <Spacer />
               <LogoutButton />

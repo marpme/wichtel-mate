@@ -25,7 +25,7 @@ export const LoginForm = () => {
 
         if (!UserKeys.includes(ref.current?.value ?? "")) {
           setToast({
-            text: "Hey du! Du bist noch kein helfender Wichtel, schau später nochmal vorbei!",
+            text: "Hmm, diese Wichtel-ID kennen wir (noch) nicht. Versuch es später noch einmal!",
             type: "error",
           });
         } else {
@@ -34,7 +34,7 @@ export const LoginForm = () => {
       }}
     >
       <Card.Content>
-        <Text h5>Login:</Text>
+        <Text h5>Melde dich mit deiner Wichtel-ID an:</Text>
         <Input
           ref={ref}
           data-testid={"login-input-field"}
@@ -42,8 +42,8 @@ export const LoginForm = () => {
           htmlType="text"
           id="wichtelid"
           name="wichtelid"
-          label={"Wichtel ID"}
-          placeholder={"DZ50UpXwIp"}
+          label={"Deine Wichtel-ID"}
+          placeholder={"z. B. DZ50UpXwIp"}
           onPointerEnterCapture={() => {}}
           onPointerLeaveCapture={() => {}}
         />
@@ -60,7 +60,7 @@ export const LoginForm = () => {
           onPointerEnterCapture={() => {}}
           onPointerLeaveCapture={() => {}}
         >
-          Submit
+          Anmelden
         </Button>
       </Fieldset.Footer>
     </form>

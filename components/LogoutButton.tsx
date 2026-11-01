@@ -16,7 +16,7 @@ export const LogoutButton = () => {
         await router.push("/");
       }}
     >
-      Logout
+      Abmelden
     </Button>
   );
 };

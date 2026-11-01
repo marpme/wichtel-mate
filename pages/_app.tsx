@@ -22,7 +22,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
             // Changes the snowflake color
             color="white"
             // Controls the number of snowflakes that are created (default 150)
-            snowflakeCount={200}
+            snowflakeCount={60}
           />
         ) : null}
         <CssBaseline />

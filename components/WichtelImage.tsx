@@ -4,8 +4,8 @@ export const WichtelImage = () => (
   <Image
     src={"/wichtel.svg"}
     alt="Wichtel"
-    width={400}
-    height={200}
+    width={460}
+    height={230}
     draggable={false}
   />
 );
