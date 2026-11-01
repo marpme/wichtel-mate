@@ -1,0 +1,9 @@
+allowBuilds:
+  cypress: false
+  esbuild: false
+  sharp: false
+  unrs-resolver: false
+
+overrides:
+  compression: ^1.8.2
+  minimatch: ^11.0.3
