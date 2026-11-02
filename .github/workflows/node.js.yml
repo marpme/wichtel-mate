@@ -35,7 +35,7 @@ jobs:
       - run: pnpm install
       - name: Install Cypress binary
         run: pnpm exec cypress install
-      - uses: cypress-io/github-action@v6
+      - uses: cypress-io/github-action@v7.4.9
         with:
           build: pnpm run build
           start: pnpm serve
