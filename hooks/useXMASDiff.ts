@@ -4,6 +4,7 @@ import "moment/locale/de";
 
 export const useXMASDiff = () => {
   const [timeUntil, setTimeUntil] = useState<string | undefined>();
+  const [days, setDays] = useState<number | undefined>();
 
   useEffect(() => {
     moment.locale("de");
@@ -15,16 +16,18 @@ export const useXMASDiff = () => {
       xmas = moment(new Date(today.year() + 1, 11, 24));
     }
 
-    const days = xmas.diff(today, "days");
+    const remaining = xmas.diff(today, "days");
 
-    if (days === 0) {
+    if (remaining === 0) {
       setTimeUntil("Heute ist Heiligabend!");
-    } else if (days === 1) {
+    } else if (remaining === 1) {
       setTimeUntil("Nur noch 1 Tag bis Heiligabend!");
     } else {
-      setTimeUntil(`Nur noch ${days} Tage bis Heiligabend!`);
+      setTimeUntil(`Nur noch ${remaining} Tage bis Heiligabend!`);
     }
+
+    setDays(remaining);
   }, []);
 
-  return { timeUntil };
+  return { timeUntil, days };
 };

@@ -13,7 +13,9 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   const [snowFlakes, setSnowFlakes] = useState(false);
 
   useEffect(() => {
-    setSnowFlakes(true);
+    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setSnowFlakes(true);
+    }
   }, []);
 
   return (

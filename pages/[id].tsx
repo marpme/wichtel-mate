@@ -13,7 +13,6 @@ import { Header } from "../components/Header";
 import { WichtelImage } from "../components/WichtelImage";
 import { LogoutButton } from "../components/LogoutButton";
 import { useXMASDiff } from "../hooks/useXMASDiff";
-import { redirect } from "next/navigation";
 import { getPickedPartner } from "../lib/group";
 import { UserKeys } from "../lib/groups";
 import { useEffect, useState } from "react";
@@ -63,15 +62,13 @@ export const getStaticPaths: GetStaticPaths = () => {
 export const getStaticProps = (async (context) => {
   const userId = context.params?.id;
 
-  if (Array.isArray(userId)) {
-    return redirect("/");
+  // fallback: false guarantees params.id is a known UserKeys string; anything
+  // else (defensive) falls through to the exported 404 page
+  if (typeof userId !== "string") {
+    return { notFound: true };
   }
 
-  if (!userId) {
-    return redirect("/");
-  }
-
-  return { props: { userId: userId } };
+  return { props: { userId } };
 }) satisfies GetStaticProps<{
   userId: string;
 }>;
@@ -86,11 +83,37 @@ const Dashboard = ({
   const [revealed, setRevealed] = useState<Record<number, boolean>>({});
   const [shaking, setShaking] = useState<Record<number, boolean>>({});
 
+  useEffect(() => {
+    if (!userId) {
+      return;
+    }
+
+    try {
+      const saved = sessionStorage.getItem(`wichtel-revealed-${userId}`);
+      if (saved) {
+        setRevealed(JSON.parse(saved));
+      }
+    } catch {
+      /* private mode / storage unavailable: stay unrevealed */
+    }
+  }, [userId]);
+
   const reveal = (groupId: number) => {
     setShaking((prev) => ({ ...prev, [groupId]: true }));
     setTimeout(() => {
       setShaking((prev) => ({ ...prev, [groupId]: false }));
-      setRevealed((prev) => ({ ...prev, [groupId]: true }));
+      setRevealed((prev) => {
+        const next = { ...prev, [groupId]: true };
+        try {
+          sessionStorage.setItem(
+            `wichtel-revealed-${userId}`,
+            JSON.stringify(next),
+          );
+        } catch {
+          /* storage unavailable: reveal still works, just not persisted */
+        }
+        return next;
+      });
     }, 650);
   };
 
@@ -115,7 +138,7 @@ const Dashboard = ({
       <Header />
       <Grid.Container alignItems={"center"} justify={"center"}>
         <Grid xs={24} alignItems={"center"} justify={"center"}>
-          <Card width={"375px"}>
+          <Card width={"min(480px, calc(100vw - 32px))"}>
             <div className="wichtel-head">
               <WichtelImage />
             </div>

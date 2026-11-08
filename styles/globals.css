@@ -108,6 +108,11 @@ h6 {
   -webkit-backdrop-filter: blur(24px);
 }
 
+/* a little more breathing room inside the (now wider) card */
+.card .content {
+  padding: 24px 28px !important;
+}
+
 .card::before {
   content: "";
   position: absolute;
@@ -186,11 +191,12 @@ img[alt="Wichtel"] {
   color: #f1d68c !important;
 }
 
-/* muted uppercase group tag above the big partner name */
+/* muted uppercase group tag above the big partner name
+   (0.62 alpha keeps this at ~5.5:1 contrast on the fir-green background) */
 .group-tag {
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: rgba(244, 239, 230, 0.45) !important;
+  color: rgba(244, 239, 230, 0.62) !important;
 }
 
 /* sealed gift button: tap to reveal the assigned partner */
@@ -221,6 +227,13 @@ img[alt="Wichtel"] {
 
 .reveal-button:active:not(:disabled) {
   transform: scale(0.95);
+}
+
+.reveal-button:focus-visible {
+  outline: none;
+  box-shadow:
+    0 16px 44px rgba(212, 80, 63, 0.5),
+    0 0 0 3px rgba(232, 184, 75, 0.45);
 }
 
 .reveal-button:disabled {
@@ -318,6 +331,47 @@ img[alt="Wichtel"] {
     transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy)))
       scale(1) rotate(160deg);
   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .star-field,
+  .garland-bulb,
+  .reveal-button,
+  .revealed-name {
+    animation: none !important;
+  }
+
+  /* sparkles would freeze mid-burst without their animation */
+  .reveal-sparkle {
+    display: none;
+  }
+}
+
+/* big countdown numeral on the landing page */
+.countdown-hero {
+  text-align: center;
+  margin: 8px 0 4px;
+}
+
+.countdown-days {
+  display: block;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+  font-size: 64px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  background: linear-gradient(180deg, #ffffff 30%, #e8d9a8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.countdown-label {
+  display: block;
+  margin-top: 4px;
+  font-size: 15px;
+  color: rgba(244, 239, 230, 0.75);
 }
 
 /* string of lights across the top of every page */

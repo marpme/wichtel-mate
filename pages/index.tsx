@@ -6,7 +6,7 @@ import { LoginForm } from "../components/LoginForm";
 import { WichtelImage } from "../components/WichtelImage";
 
 export default function Home() {
-  const { timeUntil } = useXMASDiff();
+  const { timeUntil, days } = useXMASDiff();
 
   return (
     <Page dotBackdrop margin={0} padding={0} width={"100vw"}>
@@ -21,13 +21,24 @@ export default function Home() {
 
       <Grid.Container alignItems={"center"} justify={"center"}>
         <Grid xs={22} alignItems={"center"} justify={"center"}>
-          <Card width={"375px"}>
+          <Card width={"min(480px, calc(100vw - 32px))"}>
             <div className="wichtel-head">
               <WichtelImage />
             </div>
             <Card.Content>
               <Text h3>Bald ist wieder Wichtelzeit!</Text>
-              <Text p>{timeUntil}</Text>
+              {days === undefined ? null : (
+                <div className="countdown-hero" aria-label={timeUntil}>
+                  <span className="countdown-days">{days}</span>
+                  <span className="countdown-label">
+                    {days === 0
+                      ? "Heute ist Heiligabend!"
+                      : days === 1
+                        ? "Tag bis Heiligabend!"
+                        : "Tage bis Heiligabend!"}
+                  </span>
+                </div>
+              )}
               <Text small>
                 Liebe Wichtelinnen und Wichtel, auch dieses Jahr laden wir euch
                 herzlich zu unserem jährlichen Wichtelevent ein.
