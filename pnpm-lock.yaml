@@ -228,7 +228,7 @@ importers:
         version: 10.0.1(eslint@10.14.0(supports-color@8.1.1))
       '@tanstack/eslint-plugin-query':
         specifier: ^5.105.1
-        version: 5.105.1(eslint@10.14.0(supports-color@8.1.1))(supports-color@8.1.1)(typescript@5.9.3)
+        version: 5.107.1(eslint@10.14.0(supports-color@8.1.1))(supports-color@8.1.1)(typescript@5.9.3)
       '@types/node':
         specifier: 26.6.6
         version: 26.6.6
@@ -829,8 +829,8 @@ packages:
   '@swc/helpers@0.5.23':
     resolution: {integrity: sha512-5lSsMOTXURePglDfvuAQUqkGek9Hg2kksOYay2m0+XR++b2NWYL/4sWyuvVBIs8oKnJaxkdi9whaL/sqN13afw==}
 
-  '@tanstack/eslint-plugin-query@5.105.1':
-    resolution: {integrity: sha512-p6GxacHDMUVt9zWU5CsY+mY8asEZzV2KyCmjIc1V4+ltb4MpvC9SadJML9lSq2GuwLqsUcuLVDONmQvv4NI9Tg==}
+  '@tanstack/eslint-plugin-query@5.107.1':
+    resolution: {integrity: sha512-ouojB8ML40E9+Kbxao52IKU0x3528FXHnQlMS5d8fpV/fVnsCRYmfg2PMaMzYEvgCqdxTtvZfrfbSOGf2qoCpw==}
     peerDependencies:
       eslint: ^8.57.0 || ^9.0.0 || ^10.0.0
       typescript: ^5.6.0 || ^6.0.0 || ^7.0.0
@@ -3572,7 +3572,7 @@ snapshots:
     dependencies:
       tslib: 2.9.1
 
-  '@tanstack/eslint-plugin-query@5.105.1(eslint@10.14.0(supports-color@8.1.1))(supports-color@8.1.1)(typescript@5.9.3)':
+  '@tanstack/eslint-plugin-query@5.107.1(eslint@10.14.0(supports-color@8.1.1))(supports-color@8.1.1)(typescript@5.9.3)':
     dependencies:
       '@typescript-eslint/utils': 8.72.1(eslint@10.14.0(supports-color@8.1.1))(supports-color@8.1.1)(typescript@5.9.3)
       eslint: 10.14.0(supports-color@8.1.1)
